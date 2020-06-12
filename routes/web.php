@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/getEmployeePage', function () {
+    return view('EmployeePage');
+});
 Route::resource('/employee', 'EmployeeController');
 
 Route::get('editEmployee/{id}' , function($id){

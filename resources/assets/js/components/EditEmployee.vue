@@ -4,7 +4,7 @@
             <Nav></Nav>
     </div>
       <section class="body-top">
-            <p>Update Employee</p> <a :href="'/'" target=”_blank” class="btn">Back</a>
+            <p>Update Employee</p> <a :href="'/getEmployeePage'" target=”_blank” class="btn">Back</a>
     </section>
     <div class="form-wrappper">
         <div class="form-container">

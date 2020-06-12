@@ -29,7 +29,7 @@ Vue.component('edit-component', require('./components/EditEmployee.vue'));
 Vue.component('view-component', require('./components/ViewEmployee.vue'));
 Vue.component('main-component', require('./components/MainComponent.vue'));
 Vue.component('create-component', require('./components/CreateEmployee.vue'));
-
+Vue.component('ui-component', require('./components/UiComponent.vue'));
 const app = new Vue({
     el: '#app',
 });

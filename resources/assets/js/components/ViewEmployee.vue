@@ -5,7 +5,7 @@
 </div>
 
       <section class="body-top">
-            <p>View Employee</p> <a :href="'/'" target=”_blank” class="btn">Back</a>
+            <p>View Employee</p> <a :href="'/getEmployeePage'" target=”_blank” class="btn">Back</a>
     </section>
 <div class="profie_-details">
    <div class="img-container">

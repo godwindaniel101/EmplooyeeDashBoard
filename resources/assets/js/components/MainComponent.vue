@@ -10,6 +10,7 @@
       <div class="feature-container">
         <div class="nav-side">
                     <div class="nav-side-bar">
+                        
                         <div class="nav-side-bar-image">
                             <div class="side-img">
                                 <img src="/images/logo.png" alt="logo">
@@ -20,7 +21,12 @@
                         </div>
                         <div class="nav-side-bar-notice">
                             <p class="">PROJECT</p>
-                                <ul>
+                             <div v-if="issue">
+                                <p>
+                                    <span v-text="responseMessage"></span><br>
+                                </p>
+                            </div>
+                                <ul v-else>
                                     <li  v-for="data in employeeName" :key="employeeName.id">
                                       <a :href="'/viewEmployee/'+ data.id" target=”_blank”>  
                                             <div class="side-icon" v-bind:style="{ background: data.activeBackgroundColor}">
@@ -32,7 +38,9 @@
                                      </a>
                                     </li>
                                 </ul>
-                            <a href="#" class="btn2">add Project</a>
+                            <div class="btn2Class">
+                                <a href="#" class="btn2">add Project</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -40,8 +48,13 @@
     <div class="feature-container_2 ">
         <div class="main-content">
         <div class="main-content-table">
-            
-                        <table>
+                        <div class="noRecordTable" v-if="issue">
+                            <p>
+                                <span v-text="responseMessage"></span><br>
+                                <span v-text="responseMessage2"></span><a :href="'/'">View UI Implementation</a>
+                            </p>
+                        </div>
+                        <table v-else>
                             <thead>
                                 <tr>
                                     <th>
@@ -111,6 +124,9 @@ import  Nav from  './Nav';
         },   
         data(){       
             return {
+                issue:false,
+                responseMessage:'',
+                responseMessage2:'',
                 mobilePoint : false,
                 employessDetail:{},
                 employeeName:[],
@@ -121,8 +137,21 @@ import  Nav from  './Nav';
                 this.mobilePoint = !this.mobilePoint;
             },
             getEmployee(){
+                this.responseMessage = 'No Employee Record Found';
+                this.responseMessage2 ="Please add an Employee or "
+
+
             axios.get('api/employee').then((datas)=>{
                 var result = datas.data.data
+                if(result.length < 1){
+                    this.issue = true;
+                    this.responseMessage = 'No Employee Record Found';
+                this.responseMessage2 ="Please Create an Employee or "
+                }else{
+                this.issue = false;
+                this.responseMessage = '';
+                this.responseMessage2 =""
+                }
                 this.employessDetail = datas.data.data
                 var  arraylength = datas.data.data.length
                 var obj = {};
@@ -177,7 +206,9 @@ import  Nav from  './Nav';
                     console.log(this.employeeName);
                     console.log('yes');
                 }).catch((data)=>{
-                   
+                this.issue = true;
+                this.responseMessage = 'Error  Connecting!';
+                this.responseMessage2 ="Could not connect to server please "
                 })
             },
             deleteUser($id){

@@ -4,7 +4,7 @@
             <Nav></Nav>
     </div>
       <section class="body-top">
-            <p>Craete Employee</p> <a :href="'/'" target=”_blank” class="btn">Back</a>
+            <p>Craete Employee</p> <a :href="'/getEmployeePage'" target=”_blank” class="btn">Back</a>
     </section>
     <div class="form-wrappper">
         <div class="form-container">
@@ -44,6 +44,7 @@
                 <label for="duration" class="form-label">Duration</label>
                 <input  v-model="data.duration" :class="error.duration? 'form-error' : ''" type="text" class="form-input">
             </div>
+            
         </div>
         <div class="uploadBtnContainer">
              <a href="javascript:void(0)"  class="btn" @click.prevent="createEmployee()">Create Employee</a>

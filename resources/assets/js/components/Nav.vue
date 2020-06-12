@@ -11,9 +11,9 @@
             </div>
             <ul class="nav" :class=" mobilePoint ? 'mobile-nav is-active': ''">
                 
-            <li class="nav-item"><a href="#" @click="getActiveNav()">Home</a></li>
+            <li class="nav-item"><a :href="'/'"  :class="HomeActive ?'active' :' '">Home</a></li>
             <li class="nav-item"><a href="#">About</a></li>
-            <li class="nav-item"><a :href="'/'"  :class="active ?'active' :' '">Employee</a></li>
+            <li class="nav-item"><a :href="'/getEmployeePage'"  :class="EmployeeActive ?'active' :' '">Employee</a></li>
             <li class="nav-item"><a href="#">Careers</a></li>
             <li class="nav-item"><a href="#">Contact Us</a></li>
             </ul>
@@ -29,7 +29,8 @@
         
             return {
         mobilePoint : false,
-        active:false,
+        HomeActive:false,
+        EmployeeActive:false,
             }
         },
         methods:{
@@ -38,8 +39,22 @@
         },
         getActiveNav(){
             var nav = window.location.href
-            if(nav ==='http://localhost:8000/#' || nav === 'http://localhost:8000/' || nav === 'http://localhost:8000'){
-                this.active = true;
+            if(nav ==='http://localhost:8000/#' 
+            || nav === 'http://localhost:8000/' 
+            || nav === 'http://localhost:8000'
+            || nav === 'http://localhost:8000#'
+            ){
+                this.HomeActive = true;
+                this.EmployeeActive=false;
+            }else if(
+             nav === 'http://localhost:8000/getEmployeePage'
+            || nav ==='http://localhost:8000/getEmployeePage/#'
+            || nav ==='http://localhost:8000/getEmployeePage#'){
+                this.EmployeeActive = true;
+                this.HomeActive = false;
+            }else{
+                this.EmployeeActive = false;
+                this.HomeActive = false;
             }
             
         }
